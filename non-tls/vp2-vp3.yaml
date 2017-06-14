@@ -1,0 +1,34 @@
+version: '2'
+services:
+
+  vp2:
+    extends:
+      file: common.yaml
+      service: vp
+    container_name: vp2
+    ports:
+      - "7050:7050"
+      - "7051:7051"
+      - "7053:7053"
+    environment:
+      - CORE_PEER_ID=vp2
+      - CORE_PEER_ADDRESS=$LOCALIP:9051
+      - CORE_SECURITY_ENROLLID=test_vp2
+      - CORE_SECURITY_ENROLLSECRET=vQelbRvja7cJ
+      - CORE_PEER_DISCOVERY_ROOTNODE=$ROOTNODE
+
+  vp3:
+    extends:
+      file: common.yaml
+      service: vp
+    container_name: vp3
+    ports:
+      - "8050:7050"
+      - "8051:7051"
+      - "8053:7053"
+    environment:
+      - CORE_PEER_ID=vp3
+      - CORE_PEER_ADDRESS=$LOCALIP:10051
+      - CORE_SECURITY_ENROLLID=test_vp3
+      - CORE_SECURITY_ENROLLSECRET=9LKqKH5peurL
+      - CORE_PEER_DISCOVERY_ROOTNODE=$ROOTNODE

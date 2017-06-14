@@ -1,0 +1,39 @@
+version: '2'
+services:
+  
+  membersrvc:
+    extends: 
+      file: common.yaml
+      service: membersrvc
+    container_name: membersrvc
+
+  vp0:
+    extends:
+      file: common.yaml
+      service: vp
+    container_name: vp0
+    ports:
+      - "7050:7050"
+      - "7051:7051"
+      - "7053:7053"
+    environment:
+      - CORE_PEER_ID=vp0
+      - CORE_PEER_ADDRESS=$LOCALIP:7051
+      - CORE_SECURITY_ENROLLID=test_vp0
+      - CORE_SECURITY_ENROLLSECRET=MwYpmSRjupbT
+
+  vp1:
+    extends:
+      file: common.yaml
+      service: vp
+    container_name: vp1
+    ports:
+      - "8050:7050"
+      - "8051:7051"
+      - "8053:7053"
+    environment:
+      - CORE_PEER_ID=vp1
+      - CORE_PEER_ADDRESS=$LOCALIP:8051
+      - CORE_SECURITY_ENROLLID=test_vp1
+      - CORE_SECURITY_ENROLLSECRET=5wgHK9qqYaPy
+      - CORE_PEER_DISCOVERY_ROOTNODE=$ROOTNODE
