@@ -58,6 +58,4 @@ services:
       - CORE_PBFT_GENERAL_N=4
       - CORE_PBFT_GENERAL_BATCHSIZE=1
       # Chaincode Config
-      - CORE_CHAINCODE_JAVA_DOCKERFILE=  |
-            from hyperledger/fabric-javaenv:x86_64-0.6.1-preview
     command: sh -c "sleep 20; peer node start"
