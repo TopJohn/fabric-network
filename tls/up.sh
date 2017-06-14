@@ -1,8 +1,8 @@
 #!/bin/bash
 node1_ip=10.24.237.62
 node2_ip=10.26.255.163
-membersrvc_log_level=DEBUG
-peer_log_level=DEBUG
+membersrvc_log_level=INFO
+peer_log_level=INFO
 
 
 membersrvc_endpoint=$node1_ip:7054

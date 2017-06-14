@@ -36,21 +36,28 @@ services:
       - CORE_PEER_DISCOVERY_PERIOD=60s
       - CORE_PEER_DISCOVERY_TOUCHPERIOD=61s
       - CORE_VM_ENDPOINT=unix:///var/run/docker.sock
+      # Membersrvc related config
+      - CORE_SECURITY_ENABLED=true
       - CORE_PEER_PKI_ECA_PADDR=$MEMBERSRVC
       - CORE_PEER_PKI_TCA_PADDR=$MEMBERSRVC
       - CORE_PEER_PKI_TLSCA_PADDR=$MEMBERSRVC
+      - CORE_SECURITY_MULTITHREADING_ENABLED=true
+      - CORE_SECURITY_MULTITHREADING_MULTICHANNEL=true
       # TLS Config with membersrvc
       # - CORE_PEER_PKI_TLS_ENABLED=true
       # - CORE_PEER_PKI_TLS_ROOTCERT_FILE=/var/hyperledger/cert/ca.cert
       # - CORE_PEER_PKI_TLS_SERVERHOSTOVERRIDE=ca.hyperchain.cn
-      # 
-      - CORE_SECURITY_ENABLED=true
-      - CORE_PEER_VALIDATOR_CONSENSUS_PLUGIN=pbft
-      - CORE_PBFT_GENERAL_MODE=batch
-      - CORE_PBFT_GENERAL_N=4
       # TLS Config with peers
       # - CORE_PEER_TLS_ENABLED=true
       # - CORE_PEER_TLS_CERT_FILE=/var/hyperledger/cert/vp.cert
       # - CORE_PEER_TLS_KEY_FILE=/var/hyperledger/cert/vp.key
       # - CORE_PEER_TLS_SERVERHOSTOVERRIDE=vp.hyperchain.cn
+      # PBFT Config
+      - CORE_PEER_VALIDATOR_CONSENSUS_PLUGIN=pbft
+      - CORE_PBFT_GENERAL_MODE=batch
+      - CORE_PBFT_GENERAL_N=4
+      - CORE_PBFT_GENERAL_BATCHSIZE=1
+      # Chaincode Config
+      - CORE_CHAINCODE_JAVA_DOCKERFILE=  |
+            from hyperledger/fabric-javaenv:x86_64-0.6.1-preview
     command: sh -c "sleep 20; peer node start"
