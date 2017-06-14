@@ -11,8 +11,8 @@ rootnode_endpoint=$node1_ip:7051
 echo "Set ROOTNODE to "$rootnode_endpoint
 
 case $1 in
-    1)  MEMBERSRVC=$membersrvc_endpoint LOCALIP=$node1_ip ROOTNODE=$rootnode_endpoint MEMBERSRVC_LOGGING=$membersrvc_log_level PEER_LOGGING=$peer_log_level docker-compose -f membersrvc-vp0-vp1.yaml up -d
+    1)  MEMBERSRVC=$membersrvc_endpoint LOCALIP=$node1_ip ROOTNODE=$rootnode_endpoint MEMBERSRVC_LOGGING=$membersrvc_log_level PEER_LOGGING=$peer_log_level docker-compose -f membersrvc-vp0-vp1.yaml up
     ;;
-    2)  MEMBERSRVC=$membersrvc_endpoint LOCALIP=$node2_ip ROOTNODE=$rootnode_endpoint MEMBERSRVC_LOGGING=$membersrvc_log_level PEER_LOGGING=$peer_log_level docker-compose -f vp2-vp3.yaml up -d
+    2)  MEMBERSRVC=$membersrvc_endpoint LOCALIP=$node2_ip ROOTNODE=$rootnode_endpoint MEMBERSRVC_LOGGING=$membersrvc_log_level PEER_LOGGING=$peer_log_level docker-compose -f vp2-vp3.yaml up
     ;;
 esac
