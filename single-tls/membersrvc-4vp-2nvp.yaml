@@ -22,11 +22,9 @@ services:
       - "7053:7053"
     environment:
       - CORE_PEER_ID=vp0
-      - CORE_PEER_ADDRESS=vp0:7051
+      - CORE_PEER_ADDRESS=$LOCALIP:7051
       - CORE_SECURITY_ENROLLID=test_vp0
       - CORE_SECURITY_ENROLLSECRET=MwYpmSRjupbT
-    links:
-      - membersrvc
 
   vp1:
     extends:
@@ -41,13 +39,10 @@ services:
       - "8053:7053"
     environment:
       - CORE_PEER_ID=vp1
-      - CORE_PEER_ADDRESS=vp1:7051
+      - CORE_PEER_ADDRESS=$LOCALIP:8051
       - CORE_SECURITY_ENROLLID=test_vp1
       - CORE_SECURITY_ENROLLSECRET=5wgHK9qqYaPy
-      - CORE_PEER_DISCOVERY_ROOTNODE=vp0:7051
-    links:
-      - membersrvc
-      - vp0
+      - CORE_PEER_DISCOVERY_ROOTNODE=$ROOTNODE
 
   vp2:
     extends:
@@ -62,14 +57,10 @@ services:
       - "9053:7053"
     environment:
       - CORE_PEER_ID=vp2
-      - CORE_PEER_ADDRESS=vp2:7051
+      - CORE_PEER_ADDRESS=$LOCALIP:9051
       - CORE_SECURITY_ENROLLID=test_vp2
       - CORE_SECURITY_ENROLLSECRET=vQelbRvja7cJ
-      - CORE_PEER_DISCOVERY_ROOTNODE=vp0:7051
-    links:
-      - membersrvc
-      - vp0
-      - vp1
+      - CORE_PEER_DISCOVERY_ROOTNODE=$ROOTNODE
 
   vp3:
     extends:
@@ -84,15 +75,10 @@ services:
       - "10053:7053"
     environment:
       - CORE_PEER_ID=vp3
-      - CORE_PEER_ADDRESS=vp3:7051
+      - CORE_PEER_ADDRESS=$LOCALIP:10051
       - CORE_SECURITY_ENROLLID=test_vp3
       - CORE_SECURITY_ENROLLSECRET=9LKqKH5peurL
-      - CORE_PEER_DISCOVERY_ROOTNODE=vp0:7051
-    links:
-      - membersrvc
-      - vp0
-      - vp1
-      - vp2
+      - CORE_PEER_DISCOVERY_ROOTNODE=$ROOTNODE
 
   nvp0:
     extends:
@@ -107,17 +93,11 @@ services:
       - "11053:7053"
     environment:
       - CORE_PEER_ID=nvp0
-      - CORE_PEER_ADDRESS=nvp0:7051
+      - CORE_PEER_ADDRESS=$LOCALIP:11051
       - CORE_SECURITY_ENROLLID=test_nvp0
       - CORE_SECURITY_ENROLLSECRET=iywrPBDEPl0K
-      - CORE_PEER_DISCOVERY_ROOTNODE=vp0:7051
+      - CORE_PEER_DISCOVERY_ROOTNODE=$ROOTNODE
       - CORE_PEER_VALIDATOR_ENABLED=false
-    links:
-      - membersrvc
-      - vp0
-      - vp1
-      - vp2
-      - vp3
 
   nvp1:
     extends:
@@ -132,15 +112,8 @@ services:
       - "12053:7053"
     environment:
       - CORE_PEER_ID=nvp1
-      - CORE_PEER_ADDRESS=nvp1:7051
+      - CORE_PEER_ADDRESS=$LOCALIP:12051
       - CORE_SECURITY_ENROLLID=test_nvp1
       - CORE_SECURITY_ENROLLSECRET=DcYXuRSocuqd
-      - CORE_PEER_DISCOVERY_ROOTNODE=vp0:7051
+      - CORE_PEER_DISCOVERY_ROOTNODE=$ROOTNODE
       - CORE_PEER_VALIDATOR_ENABLED=false
-    links:
-      - membersrvc
-      - vp0
-      - vp1
-      - vp2
-      - vp3
-      - nvp0
